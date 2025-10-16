@@ -37,11 +37,14 @@ jobs:
           docker push
           ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
 
+          #- name: Push latest tag
+          # run: |
+          # docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
+          #  ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+          # docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
       - name: Push latest tag
         run: |
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }} \
-           /myapp:${COMMIT_ID}-${BUILD_TIME} \
-            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
 
       - name: Show final image tag
