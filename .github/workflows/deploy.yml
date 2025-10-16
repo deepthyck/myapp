@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Docker Image
         run: >
-          docker build -f /docker/dockerfile -t
+          docker build -f docker/dockerfile -t
           ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
           .
 
