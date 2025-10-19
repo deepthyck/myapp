@@ -28,16 +28,19 @@ jobs:
           echo "COMMIT_ID=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "BUILD_TIME=$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
 
-      - name: Build Docker Image
+      - name: Set up Docker buildx
+        run: docker buildx create --use
+      - name: Build and push Docker Image
         run: >
-          docker build -f docker/dockerfile -t
-          ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
-          .
+          docker buildx build --platform linux/amd64
+          -f docker/dockerfile
+          -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
+          --push .
 
-      - name: Push Docker Image
-        run: >
-          docker push
-          ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
+          # - name: Push Docker Image
+          #  run: >
+          # docker push
+          # ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
 
           #- name: Push latest tag
           # run: |
@@ -45,13 +48,13 @@ jobs:
           #  ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           # docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
       - name: Push latest tag
-        run: |
+        run: >
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
 
       # Step 7: Update K8s Deployment manifest with new image
       - name: Update deployment manifest with new image
-        run: |
+        run: >
           sed -i "s|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}|" k8s/myapp-deploy.yaml
           git config user.name "github-actions"
           git config user.email "actions@github.com"
