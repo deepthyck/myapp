@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: docker.io/deepthyck7/my-nginx:latest
+        image: deepthyck7/myapp:a32b6d9-20251019-0617
         ports:
         - containerPort: 80
       imagePullSecrets:
