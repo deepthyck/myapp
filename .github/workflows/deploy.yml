@@ -46,7 +46,7 @@ jobs:
 
       # Step 7: Update K8s Deployment manifest with new image
       - name: Update deployment manifest with new image
-        run: >
+        run: |
           sed -i "s|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}|" k8s/myapp-deploy.yaml
           git config user.name "github-actions"
           git config user.email "actions@github.com"
