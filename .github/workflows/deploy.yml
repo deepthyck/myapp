@@ -37,19 +37,10 @@ jobs:
           -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
           --push .
 
-          # - name: Push Docker Image
-          #  run: >
-          # docker push
-          # ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
-
-          #- name: Push latest tag
-          # run: |
-          # docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
-          #  ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
-          # docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
       - name: Push latest tag
-        run: >
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+        run: |
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} \
+            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
 
       # Step 7: Update K8s Deployment manifest with new image
