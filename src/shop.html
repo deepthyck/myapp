@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 600px; margin: auto; }
+    h2 { text-align: center; color: #007bff; }
+    .product { border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+    button { padding: 10px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #d63030; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to the Shopping Page 🛒</h2>
+    <div class="product"><strong>Product 1:</strong> Wireless Headphones - ₹2,499</div>
+    <div class="product"><strong>Product 2:</strong> Smart Watch - ₹3,999</div>
+    <div class="product"><strong>Product 3:</strong> Laptop Bag - ₹1,199</div>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+

@@ -1,74 +1,42 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Nginx Page</title>
+  <meta charset="UTF-8" />
+  <title>Login Page</title>
   <style>
-        body {
-            font-family: Arial;
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-box {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        #message {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+    h2 { text-align: center; color: #333; }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    #message { color: red; text-align: center; }
+  </style>
 </head>
 <body>
-
-<div class="login-box">
+  <div class="container">
     <h2>Login</h2>
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="button" onclick="validateLogin()">Login</button>
-        <div id="message"></div>
-    </form>
-</div>
+    <label>Username:</label>
+    <input type="text" id="username" placeholder="Enter username" />
+    <label>Password:</label>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button type="button" onclick="validateLogin()">Login</button>
+    <div id="message"></div>
+  </div>
 
-<script>
+  <script>
     function validateLogin() {
-        var user = document.getElementById('username').value;
-        var pass = document.getElementById('password').value;
-        var message = document.getElementById('message');
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const message = document.getElementById("message");
 
-        if (user === "admin" && pass === "1234") {
-            message.style.color = "green";
-            message.innerText = "Login successful!";
-        } else {
-            message.style.color = "red";
-            message.innerText = "Invalid credentials";
-        }
+      if (user === "rahulshettyacademy" && pass === "learning123") {
+        // Redirect to shopping page
+        window.location.href = "shop.html";
+      } else {
+        message.textContent = "Invalid credentials";
+      }
     }
-</script>
-
+  </script>
 </body>
 </html>
-
