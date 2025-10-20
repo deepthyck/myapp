@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: deepthyck7/myapp:b8f83e6-20251020-0303
+        image: deepthyck7/myapp:9900bf2-20251020-0322
         ports:
         - containerPort: 80
       imagePullSecrets:
