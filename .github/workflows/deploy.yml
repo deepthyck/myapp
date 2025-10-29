@@ -40,10 +40,7 @@ jobs:
           -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest \
           --push .
           docker images
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
-          docker images
-
+          
           #- name: Push latest tag
           # run: |
           #  docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} \
