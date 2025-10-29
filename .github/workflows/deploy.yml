@@ -37,7 +37,7 @@ jobs:
           -f docker/dockerfile \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest .
-          
+          docker images
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
           docker images
