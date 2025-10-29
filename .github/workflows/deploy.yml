@@ -36,7 +36,7 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64 \
           -f docker/dockerfile \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME} \
-          -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+          -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest .
           
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${COMMIT_ID}-${BUILD_TIME}
